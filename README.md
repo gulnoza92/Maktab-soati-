@@ -18,16 +18,6 @@ Zavuch va sinf rahbari uchun kunlik ish vositasi — bitta HTML fayl, o'rnatish 
 
 **Yoki faylni to'g'ridan-to'g'ri.** `index.html` faylini istalgan qurilmaga ko'chirib, brauzerda oching. Fayl menejeridan emas — Telegram yoki shunga o'xshash ilova ichidagi brauzerdan ochsangiz, fayl tanlash oynalari ishlamasligi mumkin.
 
-## GitHub Pages'ga qo'yish (bir marta, 5 daqiqa)
-
-1. github.com'da yangi repository yarating (**New repository**), nomini xohlagancha qo'ying.
-2. Repository sahifasida **"uploading an existing file"** havolasini bosing (yoki **Add file → Upload files**).
-3. `index.html` faylini shu yerga tashlang (drag-and-drop), pastda **Commit changes** tugmasini bosing.
-4. **Settings → Pages** bo'limiga o'ting. **Branch** ostida `main` ni tanlang, **Save** bosing.
-5. Bir necha daqiqadan so'ng yuqorida havola chiqadi: `https://<username>.github.io/<repository-nomi>/` — shu havola doimiy ishlaydi.
-
-Keyinchalik faylni yangilash uchun: shu havolani qayta bosib, yangi `index.html`'ni yuklab, **Commit changes** deysiz — sahifa bir necha daqiqada yangilanadi.
-
 ## Yordamchi (🎤)
 
 Pastki o'ngdagi 🎤 tugma yoki daraxt markazidagi doira — ovozli/yozma yordamchi. Buyruqni gapirasiz yoki yozasiz:
