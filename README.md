@@ -18,7 +18,14 @@ Zavuch va sinf rahbari uchun kunlik ish vositasi — bitta HTML fayl, o'rnatish 
 
 **Yoki faylni to'g'ridan-to'g'ri.** `index.html` faylini istalgan qurilmaga ko'chirib, brauzerda oching. Fayl menejeridan emas — Telegram yoki shunga o'xshash ilova ichidagi brauzerdan ochsangiz, fayl tanlash oynalari ishlamasligi mumkin.
 
-## 
+## GitHub Pages'ga qo'yish (bir marta, 5 daqiqa)
+
+1. github.com'da yangi repository yarating (**New repository**), nomini xohlagancha qo'ying.
+2. Repository sahifasida **"uploading an existing file"** havolasini bosing (yoki **Add file → Upload files**).
+3. `index.html` faylini shu yerga tashlang (drag-and-drop), pastda **Commit changes** tugmasini bosing.
+4. **Settings → Pages** bo'limiga o'ting. **Branch** ostida `main` ni tanlang, **Save** bosing.
+5. Bir necha daqiqadan so'ng yuqorida havola chiqadi: `https://<username>.github.io/<repository-nomi>/` — shu havola doimiy ishlaydi.
+
 Keyinchalik faylni yangilash uchun: shu havolani qayta bosib, yangi `index.html`'ni yuklab, **Commit changes** deysiz — sahifa bir necha daqiqada yangilanadi.
 
 ## Yordamchi (🎤)
@@ -43,9 +50,17 @@ Havola faqat GitHub'ga joylangan versiyada ishlaydi (fayldan ochilganda 🔗 tug
 
 Ro'yxatni yo'qotmaslik uchun **«Faylga saqlash»** (JSON) — sozlamalar bilan birga saqlanadi, 📎 orqali qaytadan yuklanadi.
 
+## AI (miya) — Gemini bepul
+
+Yordamchining ko'p buyruqlari AI'siz ishlaydi (bo'limlar, ishlar, oylik hisobi, buyruqlar reyestri). Erkin savollar, xabar/buyruq loyihasi, prezentatsiya va yillik reja uchun AI kerak: ⚙ AI → Xizmat: **Gemini (Google)** → kalit **aistudio.google.com/apikey**'dan (Google hisobi, 18+, karta shart emas). AI javoblari ekranda chiqadi va ovozda o'qiladi. Bepul tarifda Google so'rovlardan mahsulotlarini yaxshilash uchun foydalanishi mumkin — ismlar yuborishdan oldin yashiriladi.
+
 ## Sado — bepul ovoz (o'rnatilgan)
 
 Ilova ichida **Sado** moduli bor (brauzerning Web Speech API'si ustida, kalit va serversiz): ovozli javob o'zbekcha ovoz bo'lmagan telefonda ham eshitiladi — matn transliteratsiya qilinib, ruscha (yoki turkcha) ovoz bilan o'qiladi; mikrofon gapirgan sari matnni jonli ko'rsatadi va sukutda o'zi qayta yoqiladi. Aisha kaliti kiritilsa, Aisha ustun turadi.
+
+## Azure — tabiiy o'zbek ovoz (ixtiyoriy, bepul tarif bor)
+
+⚙ AI → «Azure» qatori: KEY 1 va Region (masalan `westeurope`), ovoz — Madina yoki Sardor. Kalit portal.azure.com'da «Speech» resursi yaratilib (tarif **Free F0**), «Keys and Endpoint» bo'limidan olinadi. Ustunlik: Azure → Aisha → Sado.
 
 ## Aisha — o'zbekcha ovoz (ixtiyoriy)
 
