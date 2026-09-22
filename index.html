@@ -1093,7 +1093,15 @@ const UI = {
     modH: "Qayerda ochamiz?", modP: "Matn nusxalandi. Tanlangan saytda qo'yish tugmasini bosing.", modYopish: "Yopish", modFaqat: "Faqat nusxa oldim",
     aiSoz: "AI sozlamalari", aiProv: "Xizmat", aiKalitL: "API kalit", aiModelL: "Model (o'zgartirish mumkin)", aiSina: "Sinab ko'rish", aiSaqla: "Saqlash", aiOchir: "Kalitni o'chirish",
     aiIzoh: "Kalit faqat shu qurilmada, brauzer xotirasida saqlanadi — faylning ichiga yozilmaydi. Kalit bo'lsa, ✨ tugmalar natijani shu yerning o'zida tayyorlab, avtomatik saqlaydi. Kalitsiz — matn tayyorlanib, Claude/ChatGPT ilovasiga ulashiladi.",
-    aiQayerdan: "Kalit qayerdan olinadi: console.anthropic.com (Claude) yoki platform.openai.com (ChatGPT). Bu Claude ilovasidagi oddiy akkaunt emas — alohida, pullik dasturchi hisobi.",
+    aiQayerdan: "Bepul: Gemini — aistudio.google.com/apikey (Google hisobi, 18+, karta shart emas). Pullik: console.anthropic.com (Claude) yoki platform.openai.com (ChatGPT). Gemini bepul tarifida Google so'rovlardan o'z mahsulotlarini yaxshilash uchun foydalanishi mumkin — ismlar yuborishdan oldin yashiriladi.",
+    aiIzohTarmoq: "Internet yo'q yoki brauzer so'rovni to'sdi — ilova havola (https) orqali ochilganini tekshiring.",
+    aiIzoh400: "Kalit noto'g'ri — to'liq nusxalanmagan bo'lishi mumkin. AI Studio'da kalit yonidagi nusxalash belgisini bosib, qaytadan qo'ying.",
+    aiIzoh401: "Google kalitni qabul qilmadi. Yangi «AQ.» kalitlarda ba'zi hisoblarda shunday bo'lmoqda: AI Studio'da kalitni o'chirib, yangisini yarating; Google hisobida yosh (18+) tasdiqlanganini ham tekshiring.",
+    aiIzoh429: "Bepul limit tugadi — 1–2 daqiqadan keyin qayta urining. Xabarda «limit: 0» bo'lsa, bu model hisobingizga bepul ochilmagan: Model maydoniga gemini-2.5-flash yozib ko'ring.",
+    aiIzoh404: "Bu model topilmadi — Model maydoniga gemini-2.5-flash yozib, qayta sinang.",
+    yAiYoq: "Erkin savollarga javob berish uchun AI ulanmagan. ⚙ AI → Xizmat: Gemini → aistudio.google.com/apikey'dan bepul kalit (karta shart emas).",
+    yDavomi: "Davomi ekranda.",
+    ySavol: (q, ctx) => "Sen «Maktab soati» ilovasidagi yordamchisan: maktab zavuchi, direktori va o'qituvchilariga yordam berasan. Savol: «" + q + "». Kontekst: " + ctx + ". O'zbek tilida, qisqa (2–5 jumla), aniq javob ber. Qonun, sana yoki raqamni bilmasang — o'ylab topma, «aniq bilmayman, tekshiring» de.",
     aiSinaOk: "Ishlayapti: ", aiSinaXato: "Ulanmadi: ", aiIshlayapti: "AI ishlayapti, kuting...", aiXato: "AI javob bermadi: ",
     aiUlash: "Claude ilovasiga yuborish (Ulashish)", aiBrauzer: "claude.ai (brauzerda)",
     aiBrauzerIzoh: "Brauzer sizni tanimadi, chunki u ilovadan alohida: brauzerda claude.ai'ga bir marta kirish kerak, yoki «Ulashish» orqali matnni to'g'ridan-to'g'ri ilovaga yuboring.",
@@ -1154,6 +1162,9 @@ const UI = {
     yMikJim: "Hech narsa eshitilmadi. Mikrofonga yaqinroq, aniqroq gapirib ko'ring.",
     yMikYoqEmas: "Mikrofon topilmadi. Qurilmada mikrofon yoqilganini tekshiring.",
     yMikKlaviatura: "Muqobil: klaviaturadagi 🎤 tugmasi bilan matn maydoniga gapiring — bu har qanday brauzerda ishlaydi.",
+    azH: "Azure — tabiiy o'zbek ovoz (Madina / Sardor)", azKalitL: "Azure Speech kaliti (KEY 1)", azRegion: "Region", azOvoz: "Ovoz",
+    azIzoh: "Microsoft Azure Speech: o'zbekcha neyron ovozlar, bepul tarif (F0) bor. portal.azure.com → «Speech» resursi → Keys and Endpoint → KEY 1 va Region. Kalit faqat shu brauzerda saqlanadi.",
+    azSina: "Ovozni sinash", azXato: "Azure javob bermadi: ", azCors: "Brauzer Azure'ga to'g'ridan-to'g'ri murojaatga ruxsat bermadi yoki kalit/region noto'g'ri. Region kalit yonida yozilgan (masalan westeurope).",
     asH: "Aisha — o'zbek ovoz (aisha.group)", asKalitL: "Aisha API kalit", asMood: "Kayfiyat", asTez: "Tezlik",
     asIzoh: "Aisha kaliti bo'lsa, yordamchi o'zbekcha tabiiy ovozda gapiradi va mikrofonni Aisha taniydi (Chrome shart emas, Yandex/Firefox'da ham). Kalit voicelab.uz/app saytida olinadi, har belgi uchun to'lanadi. Kalit faqat shu brauzerda saqlanadi.",
     asSina: "Ovozni sinash", asSinaMatn: "Salom! Men Maktab yordamchisiman.", asYoq: "Aisha kaliti kiritilmagan — brauzer ovozi ishlatiladi.",
@@ -1265,7 +1276,15 @@ const UI = {
     modH: "Где открыть?", modP: "Текст скопирован. Вставьте его на выбранном сайте.", modYopish: "Закрыть", modFaqat: "Только скопировать",
     aiSoz: "Настройки ИИ", aiProv: "Сервис", aiKalitL: "API-ключ", aiModelL: "Модель (можно изменить)", aiSina: "Проверить", aiSaqla: "Сохранить", aiOchir: "Удалить ключ",
     aiIzoh: "Ключ хранится только на этом устройстве, в памяти браузера — в файл не записывается. С ключом кнопки ✨ готовят результат прямо здесь и сохраняют его. Без ключа — текст готовится и отправляется в приложение Claude/ChatGPT.",
-    aiQayerdan: "Где взять ключ: console.anthropic.com (Claude) или platform.openai.com (ChatGPT). Это не обычный аккаунт приложения — отдельный платный аккаунт разработчика.",
+    aiQayerdan: "Бесплатно: Gemini — aistudio.google.com/apikey (аккаунт Google, 18+, карта не нужна). Платно: console.anthropic.com (Claude) или platform.openai.com (ChatGPT). На бесплатном тарифе Gemini Google может использовать запросы для улучшения своих продуктов — имена скрываются до отправки.",
+    aiIzohTarmoq: "Нет интернета или браузер заблокировал запрос — проверьте, что приложение открыто по ссылке (https).",
+    aiIzoh400: "Неверный ключ — возможно, скопирован не полностью. В AI Studio нажмите значок копирования рядом с ключом и вставьте заново.",
+    aiIzoh401: "Google не принял ключ. С новыми ключами «AQ.» у некоторых аккаунтов так бывает: удалите ключ в AI Studio и создайте новый; проверьте также, что возраст (18+) подтверждён в аккаунте Google.",
+    aiIzoh429: "Исчерпан бесплатный лимит — повторите через 1–2 минуты. Если в сообщении «limit: 0», эта модель недоступна вашему аккаунту бесплатно: впишите в поле «Модель» gemini-2.5-flash.",
+    aiIzoh404: "Модель не найдена — впишите в поле «Модель» gemini-2.5-flash и проверьте снова.",
+    yAiYoq: "ИИ не подключён, поэтому на свободные вопросы ответить не могу. ⚙ AI → Сервис: Gemini → бесплатный ключ на aistudio.google.com/apikey (карта не нужна).",
+    yDavomi: "Продолжение на экране.",
+    ySavol: (q, ctx) => "Ты помощник в приложении «Maktab soati»: помогаешь завучу, директору и учителям школы. Вопрос: «" + q + "». Контекст: " + ctx + ". Ответь по-русски, кратко (2–5 предложений) и точно. Если не знаешь закон, дату или цифру — не выдумывай, скажи «точно не знаю, проверьте».",
     aiSinaOk: "Работает: ", aiSinaXato: "Не подключилось: ", aiIshlayapti: "ИИ работает, подождите...", aiXato: "ИИ не ответил: ",
     aiUlash: "Отправить в приложение Claude (Поделиться)", aiBrauzer: "claude.ai (в браузере)",
     aiBrauzerIzoh: "Браузер вас не узнал, потому что он отдельно от приложения: нужно один раз войти на claude.ai в браузере, либо отправить текст прямо в приложение через «Поделиться».",
@@ -1326,6 +1345,9 @@ const UI = {
     yMikJim: "Ничего не услышал. Говорите ближе к микрофону и чётче.",
     yMikYoqEmas: "Микрофон не найден. Проверьте, что он включён на устройстве.",
     yMikKlaviatura: "Альтернатива: микрофон на клавиатуре 🎤 — диктуйте прямо в поле, работает в любом браузере.",
+    azH: "Azure — естественный узбекский голос (Madina / Sardor)", azKalitL: "Ключ Azure Speech (KEY 1)", azRegion: "Регион", azOvoz: "Голос",
+    azIzoh: "Microsoft Azure Speech: узбекские нейронные голоса, есть бесплатный тариф (F0). portal.azure.com → ресурс «Speech» → Keys and Endpoint → KEY 1 и Region. Ключ хранится только в этом браузере.",
+    azSina: "Проверить голос", azXato: "Azure не ответил: ", azCors: "Браузер не разрешил прямое обращение к Azure либо ключ/регион неверны. Регион указан рядом с ключом (например westeurope).",
     asH: "Aisha — узбекский голос (aisha.group)", asKalitL: "API-ключ Aisha", asMood: "Настроение", asTez: "Скорость",
     asIzoh: "С ключом Aisha помощник говорит естественным узбекским голосом, а речь распознаёт Aisha (не нужен Chrome — работает и в Яндекс/Firefox). Ключ выдаётся на voicelab.uz/app, оплата за символы. Ключ хранится только в этом браузере.",
     asSina: "Проверить голос", asSinaMatn: "Здравствуйте! Я помощник школы.", asYoq: "Ключ Aisha не введён — используется голос браузера.",
@@ -1437,7 +1459,15 @@ const UI = {
     modH: "Where shall we open it?", modP: "Text copied. Paste it on the site you choose.", modYopish: "Close", modFaqat: "Copy only",
     aiSoz: "AI settings", aiProv: "Service", aiKalitL: "API key", aiModelL: "Model (editable)", aiSina: "Test", aiSaqla: "Save", aiOchir: "Remove key",
     aiIzoh: "The key is stored only on this device, in the browser — never inside the file. With a key, the ✨ buttons produce the result right here and save it. Without a key, the text is prepared and shared to the Claude/ChatGPT app.",
-    aiQayerdan: "Where to get a key: console.anthropic.com (Claude) or platform.openai.com (ChatGPT). This is not the normal app account — a separate, paid developer account.",
+    aiQayerdan: "Free: Gemini — aistudio.google.com/apikey (Google account, 18+, no card). Paid: console.anthropic.com (Claude) or platform.openai.com (ChatGPT). On Gemini's free tier Google may use requests to improve its products — names are hidden before sending.",
+    aiIzohTarmoq: "No internet, or the browser blocked the request — make sure the app is opened via its link (https).",
+    aiIzoh400: "Invalid key — it may not have been copied in full. In AI Studio tap the copy icon next to the key and paste it again.",
+    aiIzoh401: "Google rejected the key. Some accounts see this with the new 'AQ.' keys: delete the key in AI Studio and create a new one; also check your Google account's age (18+) is verified.",
+    aiIzoh429: "Free quota used up — try again in 1–2 minutes. If the message says 'limit: 0', this model isn't free for your account: type gemini-2.5-flash in the Model field.",
+    aiIzoh404: "Model not found — type gemini-2.5-flash in the Model field and test again.",
+    yAiYoq: "AI isn't connected, so I can't answer open questions. ⚙ AI → Service: Gemini → a free key at aistudio.google.com/apikey (no card needed).",
+    yDavomi: "The rest is on screen.",
+    ySavol: (q, ctx) => "You are the assistant in the 'Maktab soati' app, helping a school's deputy head, director and teachers. Question: \"" + q + "\". Context: " + ctx + ". Answer in English, briefly (2–5 sentences) and precisely. If you don't know a law, date or figure, don't invent it — say you're not sure and they should check.",
     aiSinaOk: "Working: ", aiSinaXato: "Could not connect: ", aiIshlayapti: "AI is working, please wait...", aiXato: "AI did not answer: ",
     aiUlash: "Send to the Claude app (Share)", aiBrauzer: "claude.ai (in the browser)",
     aiBrauzerIzoh: "The browser did not recognise you because it is separate from the app: sign in to claude.ai once in the browser, or send the text straight to the app via Share.",
@@ -1498,6 +1528,9 @@ const UI = {
     yMikJim: "Didn't hear anything. Speak closer to the microphone and more clearly.",
     yMikYoqEmas: "No microphone found. Check it is enabled on the device.",
     yMikKlaviatura: "Alternative: the keyboard's 🎤 key — dictate straight into the box; works in any browser.",
+    azH: "Azure — natural Uzbek voice (Madina / Sardor)", azKalitL: "Azure Speech key (KEY 1)", azRegion: "Region", azOvoz: "Voice",
+    azIzoh: "Microsoft Azure Speech: Uzbek neural voices, free tier (F0) available. portal.azure.com → a 'Speech' resource → Keys and Endpoint → KEY 1 and Region. Stored only in this browser.",
+    azSina: "Test the voice", azXato: "Azure did not respond: ", azCors: "The browser refused a direct call to Azure, or the key/region is wrong. The region is shown next to the key (e.g. westeurope).",
     asH: "Aisha — Uzbek voice (aisha.group)", asKalitL: "Aisha API key", asMood: "Mood", asTez: "Speed",
     asIzoh: "With an Aisha key the assistant speaks in a natural Uzbek voice and Aisha recognises your speech (no Chrome needed — works in Yandex/Firefox too). Get a key at voicelab.uz/app; billed per character. Stored only in this browser.",
     asSina: "Test the voice", asSinaMatn: "Hello! I am the school assistant.", asYoq: "No Aisha key — the browser voice is used.",
@@ -1742,8 +1775,41 @@ let AI = { provayder: "anthropic", kalit: "", model: "" };
 function aiTikla() { try { const x = localStorage.getItem(AI_KALIT); if (x) AI = Object.assign(AI, JSON.parse(x)); } catch (e) {} }
 function aiSaqla() { try { localStorage.setItem(AI_KALIT, JSON.stringify(AI)); } catch (e) {} }
 function aiBormi() { return !!(AI.kalit && AI.kalit.trim()); }
-function aiModel() { return AI.model && AI.model.trim() ? AI.model.trim() : (AI.provayder === "openai" ? "gpt-4o-mini" : "claude-sonnet-5"); }
+function aiStandartModel(p) { return p === "gemini" ? "gemini-3.8-flash" : p === "openai" ? "gpt-4o-mini" : "claude-sonnet-5"; }
+function aiModel() { return AI.model && AI.model.trim() ? AI.model.trim() : aiStandartModel(AI.provayder); }
+/* Gemini (Google): avval Interactions API, eski usul (generateContent) — zaxira */
+async function geminiSora(prompt, sistema) {
+  const kalit = AI.kalit.trim(), model = aiModel();
+  const body = { model, input: prompt, store: false };
+  if (sistema) body.system_instruction = sistema;
+  if (/^gemini-3/.test(model)) body.generation_config = { thinking_level: "low" };
+  let r = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions", { method: "POST", headers: { "Content-Type": "application/json", "x-goog-api-key": kalit }, body: JSON.stringify(body) });
+  if (r.ok) {
+    const j = await r.json();
+    if (typeof j.output_text === "string" && j.output_text) return j.output_text;
+    const steps = Array.isArray(j.steps) ? j.steps : [];
+    for (let i = steps.length - 1; i >= 0; i--) { const st = steps[i]; if (!st || st.type === "thought" || !Array.isArray(st.content)) continue;
+      const t = st.content.filter(c => c && c.type === "text" && c.text).map(c => c.text).join(""); if (t) return t; }
+    throw new Error("javob bo'sh");
+  }
+  if (r.status !== 404 && r.status !== 400) throw new Error("HTTP " + r.status + " " + (await r.text()).slice(0, 160));
+  const b2 = { contents: [{ role: "user", parts: [{ text: prompt }] }] }; if (sistema) b2.systemInstruction = { parts: [{ text: sistema }] };
+  r = await fetch("https://generativelanguage.googleapis.com/v1beta/models/" + encodeURIComponent(model) + ":generateContent", { method: "POST", headers: { "Content-Type": "application/json", "x-goog-api-key": kalit }, body: JSON.stringify(b2) });
+  if (!r.ok) throw new Error("HTTP " + r.status + " " + (await r.text()).slice(0, 160));
+  const j2 = await r.json(); const parts = (j2.candidates && j2.candidates[0] && j2.candidates[0].content && j2.candidates[0].content.parts) || [];
+  return parts.filter(x => x.text && !x.thought).map(x => x.text).join("");
+}
+function aiXatoIzoh(m) {
+  const t = String(m || ""), kod = (t.match(/HTTP (\d{3})/) || [])[1];
+  if (/Failed to fetch|NetworkError|Load failed/i.test(t)) return L().aiIzohTarmoq;
+  if (kod === "400" && /API[ _]?key|API_KEY/i.test(t)) return L().aiIzoh400;
+  if (kod === "401" || kod === "403") return L().aiIzoh401;
+  if (kod === "429") return L().aiIzoh429;
+  if (kod === "404") return L().aiIzoh404;
+  return "";
+}
 async function aiSora(prompt, sistema) {
+  if (AI.provayder === "gemini") return geminiSora(prompt, sistema);
   if (AI.provayder === "openai") {
     const r = await fetch("https://api.openai.com/v1/chat/completions", { method: "POST",
       headers: { "Content-Type": "application/json", "Authorization": "Bearer " + AI.kalit.trim() },
@@ -1836,7 +1902,8 @@ async function aiIshlat(prompt, opt) {
     }
     return natija;
   } catch (e) {
-    if (el) el.innerHTML = `<p class="msg bad">${esc(L().aiXato)}${esc(e.message || String(e))}</p>`;
+    const iz = aiXatoIzoh(e.message || e);
+    if (el) el.innerHTML = `<p class="msg bad" style="white-space:pre-wrap">${iz ? esc(iz) + "\n\n" : ""}${esc(L().aiXato)}${esc(String(e.message || e).slice(0, 220))}</p>`;
     else alert(L().aiXato + (e.message || e));
     return null;
   }
@@ -1862,12 +1929,19 @@ function aiOch(matn) {
   });
 }
 function aiSozOch() {
-  $("modal").innerHTML = `<div class="mod"><div class="box" role="dialog" aria-modal="true" style="max-width:520px">
+  $("modal").innerHTML = `<div class="mod"><div class="box" role="dialog" aria-modal="true" style="max-width:520px;max-height:88vh;overflow:auto">
     <h3>⚙ ${esc(L().aiSoz)}</h3><p class="help">${esc(L().aiIzoh)}</p>
-    <div class="row"><div><label>${esc(L().aiProv)}</label><select id="ai-prov"><option value="anthropic" ${AI.provayder !== "openai" ? "selected" : ""}>Claude (Anthropic)</option><option value="openai" ${AI.provayder === "openai" ? "selected" : ""}>ChatGPT (OpenAI)</option></select></div></div>
+    <div class="row"><div><label>${esc(L().aiProv)}</label><select id="ai-prov"><option value="gemini" ${AI.provayder === "gemini" ? "selected" : ""}>Gemini (Google) — bepul</option><option value="anthropic" ${AI.provayder !== "openai" && AI.provayder !== "gemini" ? "selected" : ""}>Claude (Anthropic)</option><option value="openai" ${AI.provayder === "openai" ? "selected" : ""}>ChatGPT (OpenAI)</option></select></div></div>
     <div class="row"><div style="flex:1"><label>${esc(L().aiKalitL)}</label><input type="password" id="ai-kalit" value="${esc(AI.kalit || "")}" style="width:100%" autocomplete="off"></div></div>
     <div class="row"><div style="flex:1"><label>${esc(L().aiModelL)}</label><input type="text" id="ai-model" value="${esc(AI.model || "")}" placeholder="${aiModel()}" style="width:100%"></div></div>
     <p class="fayl-izoh">${esc(L().aiQayerdan)}</p>
+    <h3 style="margin-top:16px;font-size:15px">🔊 ${esc(L().azH)}</h3><p class="help">${esc(L().azIzoh)}</p>
+    <div class="row"><div style="flex:1"><label>${esc(L().azKalitL)}</label><input type="password" id="az-kalit" value="${esc(AZ.kalit || "")}" style="width:100%" autocomplete="off"></div></div>
+    <div class="row"><div><label>${esc(L().azRegion)}</label><input type="text" id="az-region" value="${esc(AZ.region || "westeurope")}" style="width:150px" placeholder="westeurope"></div>
+    <div><label>${esc(L().azOvoz)}</label><select id="az-ovoz"><option value="uz-UZ-MadinaNeural" ${AZ.ovoz !== "uz-UZ-SardorNeural" ? "selected" : ""}>Madina (ayol)</option><option value="uz-UZ-SardorNeural" ${AZ.ovoz === "uz-UZ-SardorNeural" ? "selected" : ""}>Sardor (erkak)</option></select></div>
+    <div><label>${esc(L().asTez)}</label><select id="az-tez">${["0.8", "0.9", "1.0", "1.1", "1.2"].map(v => `<option value="${v}" ${String(AZ.speed) === v ? "selected" : ""}>${v}×</option>`).join("")}</select></div>
+    <button class="btn" id="az-sina">${esc(L().azSina)}</button></div>
+    <div id="az-msg" class="msg"></div>
     <h3 style="margin-top:16px;font-size:15px">🎙 ${esc(L().asH)}</h3><p class="help">${esc(L().asIzoh)}</p>
     <div class="row"><div style="flex:1"><label>${esc(L().asKalitL)}</label><input type="password" id="as-kalit" value="${esc(AS.kalit || "")}" style="width:100%" autocomplete="off"></div></div>
     <div class="row"><div><label>${esc(L().asMood)}</label><select id="as-mood">${["Neutral", "Cheerful", "Happy", "Sad"].map(m => `<option value="${m}" ${AS.mood === m ? "selected" : ""}>${m}</option>`).join("")}</select></div>
@@ -1877,13 +1951,17 @@ function aiSozOch() {
     <div id="ai-sina-x" class="msg"></div>
     <div class="row"><button class="btn main" id="ai-saq">${esc(L().aiSaqla)}</button><button class="btn" id="ai-sin">${esc(L().aiSina)}</button><button class="btn" id="ai-oc">${esc(L().aiOchir)}</button><button class="btn" id="ai-yop">${esc(L().modYopish)}</button></div></div></div>`;
   const ol = () => { AI.provayder = $("ai-prov").value; AI.kalit = $("ai-kalit").value.trim(); AI.model = $("ai-model").value.trim(); };
+  $("ai-prov").addEventListener("change", () => { $("ai-model").placeholder = aiStandartModel($("ai-prov").value); });
+  const azOl = () => { AZ.kalit = $("az-kalit").value.trim(); AZ.region = $("az-region").value.trim().toLowerCase().replace(/[^a-z0-9]/g, "") || "westeurope"; AZ.ovoz = $("az-ovoz").value; AZ.speed = $("az-tez").value; };
+  $("az-sina").addEventListener("click", async () => { azOl(); azSaqla(); $("az-msg").className = "msg"; $("az-msg").textContent = azBormi() ? L().aiIshlayapti : L().asYoq; if (!azBormi()) return;
+    try { await azGapir(L().asSinaMatn); $("az-msg").className = "msg ok"; $("az-msg").textContent = "✓"; } catch (e) { $("az-msg").className = "msg bad"; $("az-msg").textContent = azXatoMatn(e); } });
   const asOl = () => { AS.kalit = $("as-kalit").value.trim(); AS.mood = $("as-mood").value; AS.speed = $("as-tez").value; };
   $("as-sina").addEventListener("click", async () => { asOl(); asSaqla(); $("as-msg").className = "msg"; $("as-msg").textContent = asBormi() ? L().aiIshlayapti : L().asYoq; if (!asBormi()) return;
     try { await asGapir(L().asSinaMatn); $("as-msg").className = "msg ok"; $("as-msg").textContent = "✓"; } catch (e) { $("as-msg").className = "msg bad"; $("as-msg").textContent = asXatoMatn(e); } });
-  $("ai-saq").addEventListener("click", () => { ol(); asOl(); aiSaqla(); asSaqla(); $("modal").innerHTML = ""; aiHolat(); $("y-ovoz-l").textContent = asBormi() ? L().yOvozAisha : L().yOvozL; });
+  $("ai-saq").addEventListener("click", () => { ol(); asOl(); azOl(); aiSaqla(); asSaqla(); azSaqla(); $("modal").innerHTML = ""; aiHolat(); $("y-ovoz-l").textContent = azBormi() ? "Azure · " + L().yOvozL : asBormi() ? L().yOvozAisha : L().yOvozL; });
   $("ai-sin").addEventListener("click", async () => { ol(); $("ai-sina-x").className = "msg"; $("ai-sina-x").textContent = L().aiIshlayapti;
     try { const t = await aiSora("Salom! Bir so'z bilan javob ber: tayyor."); $("ai-sina-x").className = "msg ok"; $("ai-sina-x").textContent = L().aiSinaOk + t.slice(0, 60); }
-    catch (e) { $("ai-sina-x").className = "msg bad"; $("ai-sina-x").textContent = L().aiSinaXato + (e.message || e); } });
+    catch (e) { const iz = aiXatoIzoh(e.message || e); $("ai-sina-x").className = "msg bad"; $("ai-sina-x").textContent = (iz ? iz + "\n\n" : "") + L().aiSinaXato + String(e.message || e).slice(0, 220); $("ai-sina-x").style.whiteSpace = "pre-wrap"; } });
   $("ai-oc").addEventListener("click", () => { AI.kalit = ""; aiSaqla(); $("modal").innerHTML = ""; aiHolat(); });
   $("ai-yop").addEventListener("click", () => $("modal").innerHTML = "");
 }
@@ -3000,7 +3078,7 @@ function matnlarniQoy() {
   $("b-h").textContent = L().bH; $("b-sub").textContent = L().bSub; $("b-qosh").textContent = L().bQosh; $("b-csv").textContent = L().jCsv; $("b-json").textContent = L().tfJson; $("b-f-lbl").textContent = "📎 " + L().faylTanla;
   $("b-filtr").querySelector('[data-f="hamma"]').textContent = L().bHamma; $("b-filtr").querySelector('[data-f="ichki"]').textContent = L().bIchki; $("b-filtr").querySelector('[data-f="tashqi"]').textContent = L().bTashqi;
   $("b-ai-h").textContent = L().bAiH; $("b-mavzu").placeholder = L().bMavzu; $("b-ai").textContent = L().bAiBtn; bShablonChiz(); if ($("v-buyruq").classList.contains("on")) bChiz();
-  $("y-nom").textContent = L().yNom; $("y-tek").textContent = L().yTekshir; $("y-matn").placeholder = L().yPlace; $("y-ovoz-l").textContent = asBormi() ? L().yOvozAisha : L().yOvozL; $("y-tugma").title = L().yNom; $("y-tugma").setAttribute("aria-label", L().yNom); if (Y.ochiq) yChiplar();
+  $("y-nom").textContent = L().yNom; $("y-tek").textContent = L().yTekshir; $("y-matn").placeholder = L().yPlace; $("y-ovoz-l").textContent = azBormi() ? "Azure · " + L().yOvozL : asBormi() ? L().yOvozAisha : L().yOvozL; $("y-tugma").title = L().yNom; $("y-tugma").setAttribute("aria-label", L().yNom); if (Y.ochiq) yChiplar();
   $("tf-soliq-h").textContent = L().tfSoliqH; $("tf-l-jshds").textContent = L().tfLJshds; $("tf-l-inps").textContent = L().tfLInps;
   $("tf-l-tur").textContent = L().tfLTur; $("tf-tur").options[0].textContent = L().tfTurX; $("tf-tur").options[1].textContent = L().tfTurB;
   $("tf-l-ijtimoiy").textContent = L().tfLIjtimoiy; $("tf-soliq-izoh").textContent = L().tfSoliqIzoh;
@@ -3187,11 +3265,46 @@ async function yAishaTingla() {
   catch (e) { yJavob(L().asMikYoq + "\n" + L().yMikKlaviatura, false); }
 }
 
+
+/* ===== AZURE SPEECH: tabiiy o'zbek ovoz (Madina/Sardor), kalit faqat brauzerda ===== */
+const AZ_KALIT = "maktab-azure";
+let AZ = { kalit: "", region: "westeurope", ovoz: "uz-UZ-MadinaNeural", speed: "1.0" };
+(function () { try { const x = localStorage.getItem(AZ_KALIT); if (x) AZ = Object.assign(AZ, JSON.parse(x)); } catch (e) {} })();
+function azSaqla() { try { localStorage.setItem(AZ_KALIT, JSON.stringify(AZ)); } catch (e) {} }
+function azBormi() { return !!(AZ.kalit && AZ.kalit.trim() && AZ.region); }
+const AZ_OVOZLAR = { uz: ["uz-UZ-MadinaNeural", "uz-UZ-SardorNeural"], ru: ["ru-RU-SvetlanaNeural", "ru-RU-DmitryNeural"], en: ["en-US-JennyNeural", "en-US-GuyNeural"] };
+function azOvozTanla() { if (TIL === "uz") return AZ.ovoz || AZ_OVOZLAR.uz[0]; const ayol = !/Sardor|Dmitry|Guy/.test(AZ.ovoz || ""); return AZ_OVOZLAR[TIL][ayol ? 0 : 1]; }
+function azXatoMatn(e) { const m = String(e && e.message || e); return /Failed to fetch|NetworkError|Load failed|HTTP 401|HTTP 403|HTTP 404/i.test(m) ? L().azCors + " (" + m + ")" : L().azXato + m; }
+async function azAudio(matn) {
+  const ovoz = azOvozTanla(), lang = Y_TIL[TIL], rate = Math.round((parseFloat(AZ.speed || "1") - 1) * 100);
+  const x = String(matn).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const ssml = `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="${lang}"><voice name="${ovoz}"><prosody rate="${rate >= 0 ? "+" : ""}${rate}%">${x}</prosody></voice></speak>`;
+  const r = await fetch(`https://${AZ.region}.tts.speech.microsoft.com/cognitiveservices/v1`, { method: "POST",
+    headers: { "Ocp-Apim-Subscription-Key": AZ.kalit.trim(), "Content-Type": "application/ssml+xml", "X-Microsoft-OutputFormat": "audio-16khz-64kbitrate-mono-mp3", "User-Agent": "maktab-soati" }, body: ssml });
+  if (!r.ok) throw new Error("HTTP " + r.status);
+  return URL.createObjectURL(await r.blob());
+}
+async function azGapir(matn) {
+  asToxta();
+  const bolaklar = []; let q = String(matn || "").replace(/\s+/g, " ").trim();
+  while (q.length) { if (q.length <= 1800) { bolaklar.push(q); break; } let i = q.lastIndexOf(". ", 1800); if (i < 400) i = q.lastIndexOf(" ", 1800); if (i < 1) i = 1800; bolaklar.push(q.slice(0, i + 1).trim()); q = q.slice(i + 1).trim(); }
+  for (const b of bolaklar.slice(0, 4)) {
+    const url = await azAudio(b);
+    await new Promise(res => { const a = new Audio(url); AS_AUDIO = a; a.onended = () => { URL.revokeObjectURL(url); res(); }; a.onerror = res; a.play().catch(res); });
+  }
+}
+
 /* ===== YORDAMCHI: ovozli/yozma buyruqlar ===== */
 const Y = { ochiq: false, tanish: null, tinglayapti: false, oxirgiHujjat: null };
 const Y_TIL = { uz: "uz-UZ", ru: "ru-RU", en: "en-US" };
 function yNorm(t) { return String(t || "").toLowerCase().replace(/[’ʻ`´]/g, "'").replace(/[.,!?;:«»"()]/g, " ").replace(/\s+/g, " ").trim(); }
-function yBor(t, ...kalitlar) { return kalitlar.some(k => t.includes(k)); }
+/* Kalit so'z so'z boshidan mos kelishi kerak (qo'shimchalar mumkin: «tarifikatsiyani»); 3 harfgacha bo'lganlari — faqat butun so'z.
+   Aks holda «api» → «gapirish», «key» → «keyin» kabi xato mosliklar chiqadi. */
+function yBor(t, ...kalitlar) {
+  const T = " " + String(t).replace(/-/g, " ") + " ";
+  return kalitlar.some(k => { const K = String(k).replace(/-/g, " ").trim(); if (!K) return false;
+    return K.length <= 3 ? T.includes(" " + K + " ") : T.includes(" " + K); });
+}
 /* Qo'shimchali so'zlarni ham tanish: "aliyevning" ~ "aliyev", "majlisini" ~ "majlislari" */
 const Y_KIR = { а:"a",б:"b",в:"v",г:"g",д:"d",е:"e",ё:"yo",ж:"j",з:"z",и:"i",й:"y",к:"k",л:"l",м:"m",н:"n",о:"o",п:"p",р:"r",с:"s",т:"t",у:"u",ф:"f",х:"x",ц:"ts",ч:"ch",ш:"sh",щ:"sh",ъ:"",ы:"i",ь:"",э:"e",ю:"yu",я:"ya",ў:"o'",қ:"q",ғ:"g'",ҳ:"h" };
 function yLat(w) { return w.replace(/[а-яёўқғҳ]/g, c => Y_KIR[c] ?? c); }
@@ -3211,11 +3324,17 @@ function yChiplar() { $("y-chips").innerHTML = L().yChips.map(c => `<button type
   $("y-chips").querySelectorAll("button").forEach(b => b.addEventListener("click", () => yBajar(b.textContent))); }
 function yJavob(matn, gapir) {
   $("y-javob").textContent = matn;
+  if (gapir !== false) yGapir(matn);
+}
+function yGapir(matn) {
+  const gapir = true;
+  if (gapir !== false && $("y-ovoz-cb").checked && azBormi()) { azGapir(matn).catch(e => { $("y-siz").textContent = azXatoMatn(e); }); return; }
   if (gapir !== false && $("y-ovoz-cb").checked && asBormi()) { asGapir(matn).catch(e => { $("y-siz").textContent = asXatoMatn(e); }); return; }
   if (gapir !== false && $("y-ovoz-cb").checked && window.Sado && Sado.supported.tts) {
     /* Sado: o'zbekcha ovoz bo'lmasa — matnni transliteratsiya qilib ruscha/turkcha ovoz bilan o'qiydi */
     const p = TIL === "uz" ? Sado.speakUz(matn, { rate: 1 }) : Sado.speak(matn, { lang: Y_TIL[TIL], rate: 1 });
-    p.catch(() => {});
+    /* Ovoz chiqmasa — jim qolmasin: sababini ko'rsatamiz */
+    p.then(ok => { if (ok === false) { Sado.voices().then(v => { const bor = v.some(x => /^(uz|ru|tr)/i.test(x.lang || "")); $("y-siz").textContent = bor ? L().yTekOvoz : L().yTekRu; }); } }).catch(() => { $("y-siz").textContent = L().yTekOvoz; });
   }
 }
 function yIshRoyxati(sarlavha, ishlar) {
@@ -3227,7 +3346,7 @@ function yIshRoyxati(sarlavha, ishlar) {
 
 /* Ovoz tekshiruvi: nima bor, nima yo'q — va bitta jumla aytib ko'radi */
 async function yOvozTekshir() {
-  const o = { https: location.protocol !== "file:", tts: !!(window.Sado && Sado.supported.tts), stt: !!(window.Sado && Sado.supported.stt), aisha: asBormi() };
+  const o = { https: location.protocol !== "file:", tts: !!(window.Sado && Sado.supported.tts), stt: !!(window.Sado && Sado.supported.stt), aisha: asBormi() || azBormi() };
   let all = []; try { all = window.Sado ? await Sado.voices() : []; } catch (e) {}
   const tillar = {}; all.forEach(v => { const k = String(v.lang || "").toLowerCase().split(/[-_]/)[0]; tillar[k] = (tillar[k] || 0) + 1; });
   o.ovozlar = Object.keys(tillar).sort().map(k => k + " (" + tillar[k] + ")").join(", ");
@@ -3235,7 +3354,7 @@ async function yOvozTekshir() {
   o.maslahat = !o.tts ? L().yOvozYoq : (!uzRuTr && !o.aisha && TIL === "uz") ? L().yTekRu : L().yTekOvoz;
   yJavob(L().yTek(o), false);
   const cb = $("y-ovoz-cb"); const eski = cb.checked; cb.checked = true;
-  try { if (o.aisha) await asGapir(L().yOvozYoqildi); else if (window.Sado) await (TIL === "uz" ? Sado.speakUz(L().yOvozYoqildi) : Sado.speak(L().yOvozYoqildi, { lang: Y_TIL[TIL] })); } catch (e) { $("y-siz").textContent = String(e.message || e); }
+  try { if (azBormi()) await azGapir(L().yOvozYoqildi); else if (asBormi()) await asGapir(L().yOvozYoqildi); else if (window.Sado) await (TIL === "uz" ? Sado.speakUz(L().yOvozYoqildi) : Sado.speak(L().yOvozYoqildi, { lang: Y_TIL[TIL] })); } catch (e) { $("y-siz").textContent = String(e.message || e); }
   cb.checked = eski;
 }
 
@@ -3293,11 +3412,24 @@ function yPrez(mavzu) {
 }
 
 /* Kotib — xabar/hujjat matni */
+function yQisqa(m) { m = String(m || "").replace(/[#*_>`|]/g, " ").replace(/\s+/g, " ").trim(); if (m.length <= 600) return m;
+  const g = m.match(/[^.!?]+[.!?]+/g) || [m]; let o = ""; for (const x of g) { if ((o + x).length > 420) break; o += x; } return (o || m.slice(0, 420)) + " " + L().yDavomi; }
+function ySavolmi(xom, t) { return /\?\s*$/.test(xom) || yBor(t, "qanday", "nima uchun", "nega ", "qachon", "qancha", "nima ", "kim ", "как ", "что ", "почему", "зачем", "когда", "сколько", "how ", "what ", "why ", "when ", "who "); }
+/* Erkin savol — AI javob beradi, javob ekranda va ovozda */
+function yAiSavol(xom) {
+  const a = anonim(xom);
+  const prompt = L().ySavol(a.matn, yKontekst());
+  yJavob(L().yTayyorlayapman, false);
+  aiIshlat(prompt, { natijaEl: "y-javob", saqla: false, sarlavha: xom.slice(0, 60),
+    qayta: (m) => { setTimeout(() => yGapir(yQisqa(m)), 0); return m; },
+    korsat: (el, m) => { el.innerHTML = `<div style="white-space:pre-wrap">${esc(m)}</div><div class="row" style="margin-top:6px"><button class="btn" id="y-nus" style="padding:5px 10px;font-size:12px">${esc(L().copy)}</button></div>`;
+      $("y-nus").addEventListener("click", () => nusxala(m, () => { $("y-nus").textContent = L().copied; })); } });
+}
 function yKotib(buyruq) {
   const prompt = L().yKotib(buyruq, yKontekst());
   if (!aiBormi()) { yJavob(L().yKalitYoq, false); aiOch(prompt); return; }
   yJavob(L().yTayyorlayapman, false);
-  aiIshlat(prompt, { natijaEl: "y-javob", sarlavha: buyruq.slice(0, 60), qayta: (m) => { Y.oxirgiHujjat = { sarlavha: buyruq.slice(0, 60), tur: "matn", matn: m }; return m; } });
+  aiIshlat(prompt, { natijaEl: "y-javob", sarlavha: buyruq.slice(0, 60), qayta: (m) => { Y.oxirgiHujjat = { sarlavha: buyruq.slice(0, 60), tur: "matn", matn: m }; setTimeout(() => yGapir(yQisqa(m)), 0); return m; } });
 }
 
 /* Oylik qanday hisoblanadi — ilovaning o'z formulasi bilan, AI'siz */
@@ -3450,6 +3582,9 @@ function yBajar(xom) {
     if (h.length) yIshRoyxati(L().yYaqin(n), h); else yJavob(L().yYaqinYoq(n)); return;
   }
 
+  // Savol shaklidagi erkin gap — AI bo'lsa, AI javob beradi (ish nomiga tasodifan mos kelib qolmasin)
+  if (aiBormi() && ySavolmi(xom, t) && !yBor(t, "xabar", "tayyorla", "yoz", "напиши", "подготовь", "сообщен", "draft", "write", "message")) { yAiSavol(xom); return; }
+
   // Ish nomi bo'yicha ochish (so'zlar mosligi)
   if (!ISHLAR.length) soatQur();
   const sozlar = t.split(" ").filter(w => w.length > 3);
@@ -3461,8 +3596,8 @@ function yBajar(xom) {
   if (yBor(t, "xabar", "tayyorla", "yoz", "buyruq", "matn", "напиши", "подготовь", "сообщен", "составь", "draft", "write", "prepare", "message", "letter")) { yKotib(xom); return; }
 
   // Tushunmadim → kalit bo'lsa AI'dan so'raymiz, bo'lmasa yordam
-  if (aiBormi()) { yKotib(xom); return; }
-  yJavob(L().yTushunmadim + "\n" + L().yQila.join("\n"), false);
+  if (aiBormi()) { yAiSavol(xom); return; }
+  yJavob(L().yTushunmadim + "\n" + L().yQila.join("\n") + "\n\n" + L().yAiYoq, false);
 }
 
 /* Ulash */
