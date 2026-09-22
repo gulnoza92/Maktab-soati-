@@ -1099,6 +1099,7 @@ const UI = {
     aiIzoh401: "Google kalitni qabul qilmadi. Yangi «AQ.» kalitlarda ba'zi hisoblarda shunday bo'lmoqda: AI Studio'da kalitni o'chirib, yangisini yarating; Google hisobida yosh (18+) tasdiqlanganini ham tekshiring.",
     aiIzoh429: "Bepul limit tugadi — 1–2 daqiqadan keyin qayta urining. Xabarda «limit: 0» bo'lsa, bu model hisobingizga bepul ochilmagan: Model maydoniga gemini-2.5-flash yozib ko'ring.",
     aiIzoh404: "Bu model topilmadi — Model maydoniga gemini-2.5-flash yozib, qayta sinang.",
+    gmKalit: "Gemini kaliti noto'g'ri. aistudio.google.com/apikey'dan qayta to'liq nusxalang (odatda «AIza» bilan boshlanadi).", gmRuxsat: "Google ruxsat bermadi: hisob yoshi (18+) tasdiqlanmagan yoki kalitga cheklov qo'yilgan.", gmLimit: "Bepul limit vaqtincha tugadi — 1–2 daqiqadan keyin qayta urining.", gmHudud: "Google bu hududdan so'rovni qabul qilmadi (VPN yoqilgan bo'lsa, o'chiring).", gmTarmoq: "Google'ga ulanib bo'lmadi — internetni tekshiring.", gmFormat: "Diqqat: Gemini kaliti odatda «AIza» bilan boshlanadi — to'liq nusxalanganini tekshiring.", yVersiya: "Versiya", yTekAi: "AI tekshiruvi",
     yAiYoq: "Erkin savollarga javob berish uchun AI ulanmagan. ⚙ AI → Xizmat: Gemini → aistudio.google.com/apikey'dan bepul kalit (karta shart emas).",
     yDavomi: "Davomi ekranda.",
     ySavol: (q, ctx) => "Sen «Maktab soati» ilovasidagi yordamchisan: maktab zavuchi, direktori va o'qituvchilariga yordam berasan. Savol: «" + q + "». Kontekst: " + ctx + ". O'zbek tilida, qisqa (2–5 jumla), aniq javob ber. Qonun, sana yoki raqamni bilmasang — o'ylab topma, «aniq bilmayman, tekshiring» de.",
@@ -1282,6 +1283,7 @@ const UI = {
     aiIzoh401: "Google не принял ключ. С новыми ключами «AQ.» у некоторых аккаунтов так бывает: удалите ключ в AI Studio и создайте новый; проверьте также, что возраст (18+) подтверждён в аккаунте Google.",
     aiIzoh429: "Исчерпан бесплатный лимит — повторите через 1–2 минуты. Если в сообщении «limit: 0», эта модель недоступна вашему аккаунту бесплатно: впишите в поле «Модель» gemini-2.5-flash.",
     aiIzoh404: "Модель не найдена — впишите в поле «Модель» gemini-2.5-flash и проверьте снова.",
+    gmKalit: "Неверный ключ Gemini. Скопируйте его заново целиком на aistudio.google.com/apikey (обычно начинается с «AIza»).", gmRuxsat: "Google отказал в доступе: возраст аккаунта (18+) не подтверждён или на ключ наложены ограничения.", gmLimit: "Бесплатный лимит временно исчерпан — повторите через 1–2 минуты.", gmHudud: "Google не принял запрос из этого региона (если включён VPN — выключите).", gmTarmoq: "Не удалось подключиться к Google — проверьте интернет.", gmFormat: "Внимание: ключ Gemini обычно начинается с «AIza» — проверьте, что он скопирован целиком.", yVersiya: "Версия", yTekAi: "Проверка ИИ",
     yAiYoq: "ИИ не подключён, поэтому на свободные вопросы ответить не могу. ⚙ AI → Сервис: Gemini → бесплатный ключ на aistudio.google.com/apikey (карта не нужна).",
     yDavomi: "Продолжение на экране.",
     ySavol: (q, ctx) => "Ты помощник в приложении «Maktab soati»: помогаешь завучу, директору и учителям школы. Вопрос: «" + q + "». Контекст: " + ctx + ". Ответь по-русски, кратко (2–5 предложений) и точно. Если не знаешь закон, дату или цифру — не выдумывай, скажи «точно не знаю, проверьте».",
@@ -1465,6 +1467,7 @@ const UI = {
     aiIzoh401: "Google rejected the key. Some accounts see this with the new 'AQ.' keys: delete the key in AI Studio and create a new one; also check your Google account's age (18+) is verified.",
     aiIzoh429: "Free quota used up — try again in 1–2 minutes. If the message says 'limit: 0', this model isn't free for your account: type gemini-2.5-flash in the Model field.",
     aiIzoh404: "Model not found — type gemini-2.5-flash in the Model field and test again.",
+    gmKalit: "The Gemini key is invalid. Copy it again in full from aistudio.google.com/apikey (it usually starts with 'AIza').", gmRuxsat: "Google refused access: the account's age (18+) isn't verified, or the key is restricted.", gmLimit: "The free limit is temporarily used up — try again in 1–2 minutes.", gmHudud: "Google didn't accept the request from this region (turn off any VPN).", gmTarmoq: "Couldn't reach Google — check the internet connection.", gmFormat: "Note: a Gemini key usually starts with 'AIza' — check it was copied in full.", yVersiya: "Version", yTekAi: "AI check",
     yAiYoq: "AI isn't connected, so I can't answer open questions. ⚙ AI → Service: Gemini → a free key at aistudio.google.com/apikey (no card needed).",
     yDavomi: "The rest is on screen.",
     ySavol: (q, ctx) => "You are the assistant in the 'Maktab soati' app, helping a school's deputy head, director and teachers. Question: \"" + q + "\". Context: " + ctx + ". Answer in English, briefly (2–5 sentences) and precisely. If you don't know a law, date or figure, don't invent it — say you're not sure and they should check.",
@@ -1777,13 +1780,27 @@ function aiSaqla() { try { localStorage.setItem(AI_KALIT, JSON.stringify(AI)); }
 function aiBormi() { return !!(AI.kalit && AI.kalit.trim()); }
 function aiStandartModel(p) { return p === "gemini" ? "gemini-3.8-flash" : p === "openai" ? "gpt-4o-mini" : "claude-sonnet-5"; }
 function aiModel() { return AI.model && AI.model.trim() ? AI.model.trim() : aiStandartModel(AI.provayder); }
+const ILOVA_VERSIYA = "2026-09-22 · v13";
+function gmXato(status, matn) {
+  const m = String(matn || "");
+  if (/API[_ ]?KEY|API key/i.test(m)) return new Error(L().gmKalit);
+  if (/location is not supported|user location/i.test(m)) return new Error(L().gmHudud);
+  if (status === 429 || /RESOURCE_EXHAUSTED|quota/i.test(m)) return new Error(L().gmLimit);
+  if (status === 403 || /PERMISSION_DENIED/i.test(m)) return new Error(L().gmRuxsat + " (HTTP " + status + ")");
+  let q = m; try { q = (JSON.parse(m).error || {}).message || m; } catch (e) {}
+  return new Error("HTTP " + status + " " + q.slice(0, 140));
+}
+async function gmFetch(url, body) {
+  try { return await fetch(url, { method: "POST", headers: { "Content-Type": "application/json", "x-goog-api-key": AI.kalit.trim() }, body: JSON.stringify(body) }); }
+  catch (e) { throw new Error(L().gmTarmoq); }
+}
 /* Gemini (Google): avval Interactions API, eski usul (generateContent) — zaxira */
 async function geminiSora(prompt, sistema) {
-  const kalit = AI.kalit.trim(), model = aiModel();
+  const model = aiModel();
   const body = { model, input: prompt, store: false };
   if (sistema) body.system_instruction = sistema;
   if (/^gemini-3/.test(model)) body.generation_config = { thinking_level: "low" };
-  let r = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions", { method: "POST", headers: { "Content-Type": "application/json", "x-goog-api-key": kalit }, body: JSON.stringify(body) });
+  let r = await gmFetch("https://generativelanguage.googleapis.com/v1beta/interactions", body);
   if (r.ok) {
     const j = await r.json();
     if (typeof j.output_text === "string" && j.output_text) return j.output_text;
@@ -1792,10 +1809,11 @@ async function geminiSora(prompt, sistema) {
       const t = st.content.filter(c => c && c.type === "text" && c.text).map(c => c.text).join(""); if (t) return t; }
     throw new Error("javob bo'sh");
   }
-  if (r.status !== 404 && r.status !== 400) throw new Error("HTTP " + r.status + " " + (await r.text()).slice(0, 160));
+  const xt = await r.text();
+  if (!(r.status === 404 || (r.status === 400 && !/API[_ ]?KEY|API key|location/i.test(xt)))) throw gmXato(r.status, xt);
   const b2 = { contents: [{ role: "user", parts: [{ text: prompt }] }] }; if (sistema) b2.systemInstruction = { parts: [{ text: sistema }] };
-  r = await fetch("https://generativelanguage.googleapis.com/v1beta/models/" + encodeURIComponent(model) + ":generateContent", { method: "POST", headers: { "Content-Type": "application/json", "x-goog-api-key": kalit }, body: JSON.stringify(b2) });
-  if (!r.ok) throw new Error("HTTP " + r.status + " " + (await r.text()).slice(0, 160));
+  r = await gmFetch("https://generativelanguage.googleapis.com/v1beta/models/" + encodeURIComponent(model) + ":generateContent", b2);
+  if (!r.ok) throw gmXato(r.status, await r.text());
   const j2 = await r.json(); const parts = (j2.candidates && j2.candidates[0] && j2.candidates[0].content && j2.candidates[0].content.parts) || [];
   return parts.filter(x => x.text && !x.thought).map(x => x.text).join("");
 }
@@ -1949,6 +1967,7 @@ function aiSozOch() {
     <button class="btn" id="as-sina">${esc(L().asSina)}</button></div>
     <div id="as-msg" class="msg"></div>
     <div id="ai-sina-x" class="msg"></div>
+    <p class="fayl-izoh" style="text-align:right;margin-top:10px">${esc(L().yVersiya)}: ${esc(ILOVA_VERSIYA)}</p>
     <div class="row"><button class="btn main" id="ai-saq">${esc(L().aiSaqla)}</button><button class="btn" id="ai-sin">${esc(L().aiSina)}</button><button class="btn" id="ai-oc">${esc(L().aiOchir)}</button><button class="btn" id="ai-yop">${esc(L().modYopish)}</button></div></div></div>`;
   const ol = () => { AI.provayder = $("ai-prov").value; AI.kalit = $("ai-kalit").value.trim(); AI.model = $("ai-model").value.trim(); };
   $("ai-prov").addEventListener("change", () => { $("ai-model").placeholder = aiStandartModel($("ai-prov").value); });
@@ -1958,7 +1977,7 @@ function aiSozOch() {
   const asOl = () => { AS.kalit = $("as-kalit").value.trim(); AS.mood = $("as-mood").value; AS.speed = $("as-tez").value; };
   $("as-sina").addEventListener("click", async () => { asOl(); asSaqla(); $("as-msg").className = "msg"; $("as-msg").textContent = asBormi() ? L().aiIshlayapti : L().asYoq; if (!asBormi()) return;
     try { await asGapir(L().asSinaMatn); $("as-msg").className = "msg ok"; $("as-msg").textContent = "✓"; } catch (e) { $("as-msg").className = "msg bad"; $("as-msg").textContent = asXatoMatn(e); } });
-  $("ai-saq").addEventListener("click", () => { ol(); asOl(); azOl(); aiSaqla(); asSaqla(); azSaqla(); $("modal").innerHTML = ""; aiHolat(); $("y-ovoz-l").textContent = azBormi() ? "Azure · " + L().yOvozL : asBormi() ? L().yOvozAisha : L().yOvozL; });
+  $("ai-saq").addEventListener("click", () => { ol(); asOl(); azOl(); aiSaqla(); asSaqla(); azSaqla(); if (AI.provayder === "gemini" && AI.kalit && !/^AIza/.test(AI.kalit)) alert(L().gmFormat); $("modal").innerHTML = ""; aiHolat(); $("y-ovoz-l").textContent = azBormi() ? "Azure · " + L().yOvozL : asBormi() ? L().yOvozAisha : L().yOvozL; });
   $("ai-sin").addEventListener("click", async () => { ol(); $("ai-sina-x").className = "msg"; $("ai-sina-x").textContent = L().aiIshlayapti;
     try { const t = await aiSora("Salom! Bir so'z bilan javob ber: tayyor."); $("ai-sina-x").className = "msg ok"; $("ai-sina-x").textContent = L().aiSinaOk + t.slice(0, 60); }
     catch (e) { const iz = aiXatoIzoh(e.message || e); $("ai-sina-x").className = "msg bad"; $("ai-sina-x").textContent = (iz ? iz + "\n\n" : "") + L().aiSinaXato + String(e.message || e).slice(0, 220); $("ai-sina-x").style.whiteSpace = "pre-wrap"; } });
@@ -3352,7 +3371,12 @@ async function yOvozTekshir() {
   o.ovozlar = Object.keys(tillar).sort().map(k => k + " (" + tillar[k] + ")").join(", ");
   const uzRuTr = tillar.uz || tillar.ru || tillar.tr;
   o.maslahat = !o.tts ? L().yOvozYoq : (!uzRuTr && !o.aisha && TIL === "uz") ? L().yTekRu : L().yTekOvoz;
-  yJavob(L().yTek(o), false);
+  yJavob(L().yTek(o) + "\n" + L().yVersiya + ": " + ILOVA_VERSIYA, false);
+  if (aiBormi()) {
+    const qator = document.createElement("div"); qator.style.marginTop = "6px"; qator.textContent = L().yTekAi + " (" + AI.provayder + ", " + aiModel() + "): …"; $("y-javob").appendChild(qator);
+    aiSora("Bir so'z bilan javob ber: tayyor.").then(t => { qator.textContent = "✓ " + L().yTekAi + " (" + AI.provayder + "): " + String(t).trim().slice(0, 40); })
+      .catch(e => { qator.textContent = "✗ " + L().yTekAi + " (" + AI.provayder + "): " + (e.message || e); });
+  } else { const qator = document.createElement("div"); qator.style.marginTop = "6px"; qator.textContent = "– " + L().yAiYoq; $("y-javob").appendChild(qator); }
   const cb = $("y-ovoz-cb"); const eski = cb.checked; cb.checked = true;
   try { if (azBormi()) await azGapir(L().yOvozYoqildi); else if (asBormi()) await asGapir(L().yOvozYoqildi); else if (window.Sado) await (TIL === "uz" ? Sado.speakUz(L().yOvozYoqildi) : Sado.speak(L().yOvozYoqildi, { lang: Y_TIL[TIL] })); } catch (e) { $("y-siz").textContent = String(e.message || e); }
   cb.checked = eski;
@@ -3632,7 +3656,9 @@ tfHavolaTekshir();
 <script>
 /* Havola (https) orqali ochilganda ilova sifatida o'rnatish va offlayn kesh; fayldan ochilganda hech narsa qilmaydi */
 if ("serviceWorker" in navigator && location.protocol !== "file:") {
-  navigator.serviceWorker.register("sw.js").catch(function(){});
+  var swOldingi = !!navigator.serviceWorker.controller, swYangilandi = false;
+  navigator.serviceWorker.addEventListener("controllerchange", function () { if (swOldingi && !swYangilandi) { swYangilandi = true; location.reload(); } });
+  navigator.serviceWorker.register("sw.js").then(function (r) { try { r.update(); } catch (e) {} }).catch(function(){});
 }
 </script>
 </body>
