@@ -1780,7 +1780,7 @@ function aiSaqla() { try { localStorage.setItem(AI_KALIT, JSON.stringify(AI)); }
 function aiBormi() { return !!(AI.kalit && AI.kalit.trim()); }
 function aiStandartModel(p) { return p === "gemini" ? "gemini-3.8-flash" : p === "openai" ? "gpt-4o-mini" : "claude-sonnet-5"; }
 function aiModel() { return AI.model && AI.model.trim() ? AI.model.trim() : aiStandartModel(AI.provayder); }
-const ILOVA_VERSIYA = "2026-09-22 · v13";
+const ILOVA_VERSIYA = "2026-09-22 · v14";
 function gmXato(status, matn) {
   const m = String(matn || "");
   if (/API[_ ]?KEY|API key/i.test(m)) return new Error(L().gmKalit);
@@ -3363,14 +3363,16 @@ function yIshRoyxati(sarlavha, ishlar) {
 }
 
 
+function yHavolami() { return location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1"; }
+function yBoshqaBrauzer() { return /YaBrowser|OPR\/|SamsungBrowser|Telegram|MiuiBrowser|XiaoMi|UCBrowser|FBAN|FBAV|Instagram/i.test(navigator.userAgent) || location.protocol === "content:"; }
 /* Ovoz tekshiruvi: nima bor, nima yo'q — va bitta jumla aytib ko'radi */
 async function yOvozTekshir() {
-  const o = { https: location.protocol !== "file:", tts: !!(window.Sado && Sado.supported.tts), stt: !!(window.Sado && Sado.supported.stt), aisha: asBormi() || azBormi() };
+  const o = { https: yHavolami(), tts: !!(window.Sado && Sado.supported.tts), stt: !!(window.Sado && Sado.supported.stt), aisha: asBormi() || azBormi() };
   let all = []; try { all = window.Sado ? await Sado.voices() : []; } catch (e) {}
   const tillar = {}; all.forEach(v => { const k = String(v.lang || "").toLowerCase().split(/[-_]/)[0]; tillar[k] = (tillar[k] || 0) + 1; });
   o.ovozlar = Object.keys(tillar).sort().map(k => k + " (" + tillar[k] + ")").join(", ");
   const uzRuTr = tillar.uz || tillar.ru || tillar.tr;
-  o.maslahat = !o.tts ? L().yOvozYoq : (!uzRuTr && !o.aisha && TIL === "uz") ? L().yTekRu : L().yTekOvoz;
+  o.maslahat = (yBoshqaBrauzer() || !o.https ? L().yMikBrauzer + " " : "") + (!o.tts ? L().yOvozYoq : (!uzRuTr && !o.aisha && TIL === "uz") ? L().yTekRu : L().yTekOvoz);
   yJavob(L().yTek(o) + "\n" + L().yVersiya + ": " + ILOVA_VERSIYA, false);
   if (aiBormi()) {
     const qator = document.createElement("div"); qator.style.marginTop = "6px"; qator.textContent = L().yTekAi + " (" + AI.provayder + ", " + aiModel() + "): …"; $("y-javob").appendChild(qator);
@@ -3378,16 +3380,16 @@ async function yOvozTekshir() {
       .catch(e => { qator.textContent = "✗ " + L().yTekAi + " (" + AI.provayder + "): " + (e.message || e); });
   } else { const qator = document.createElement("div"); qator.style.marginTop = "6px"; qator.textContent = "– " + L().yAiYoq; $("y-javob").appendChild(qator); }
   const cb = $("y-ovoz-cb"); const eski = cb.checked; cb.checked = true;
-  try { if (azBormi()) await azGapir(L().yOvozYoqildi); else if (asBormi()) await asGapir(L().yOvozYoqildi); else if (window.Sado) await (TIL === "uz" ? Sado.speakUz(L().yOvozYoqildi) : Sado.speak(L().yOvozYoqildi, { lang: Y_TIL[TIL] })); } catch (e) { $("y-siz").textContent = String(e.message || e); }
+  try { if (azBormi()) await azGapir(L().yOvozYoqildi); else if (asBormi()) await asGapir(L().yOvozYoqildi); else if (window.Sado) await (TIL === "uz" ? Sado.speakUz(L().yOvozYoqildi) : Sado.speak(L().yOvozYoqildi, { lang: Y_TIL[TIL] })); } catch (e) { const m = String(e.message || e); $("y-siz").textContent = /unsupported/i.test(m) ? L().yOvozYoq : m; }
   cb.checked = eski;
 }
 
 /* Ovoz */
 function yTingla() {
-  if (asBormi() && navigator.mediaDevices && window.MediaRecorder) { if (location.protocol === "file:") { yJavob(L().yMikFayl, false); return; } yAishaTingla(); return; }
+  if (asBormi() && navigator.mediaDevices && window.MediaRecorder) { if (!yHavolami()) { yJavob(L().yMikFayl, false); return; } yAishaTingla(); return; }
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SR) { yJavob(L().yOvozYoq + "\n" + L().yMikKlaviatura, false); return; }
-  if (location.protocol === "file:") { yJavob(L().yMikFayl, false); $("y-matn").focus(); return; }
+  if (!yHavolami()) { yJavob(L().yMikFayl, false); $("y-matn").focus(); return; }
   if (Y.tinglayapti) { yToxta(); return; }
   if (window.Sado && Sado.supported.stt) {
     /* Sado.listen: oraliq matn jonli ko'rinadi, sukutda o'zi qayta yoqiladi, xato kodlari aniq */
